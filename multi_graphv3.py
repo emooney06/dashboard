@@ -6,13 +6,13 @@ import dash_html_components as html
 import dash_core_components as dcc
 import pandas as pd
 import numpy as np
- 
+
 external_stylesheets = ['https://codepen.io/chriddyp/pen/bWLwgP.css']
 app = dash.Dash(__name__, external_stylesheets=external_stylesheets)
- 
+
 #app = dash.Dash()
- 
-df = pd.read_excel(r'C:\Test_Data\NDNQI_raw.xlsx')
+
+df = pd.read_excel(r'C:\Users\ejmooney\Desktop\testData\NDNQI_raw.xlsx')
 df = df[['Unit - Clinical ID', 'Unit - Clinical DESC', 'Clinical Unit Type DESC', 'Measure Long Desc', \
     'Quarter', 'Unit', 'PGUnit Mean', 'PG Unit SD', 'PG Unit P10', 'PG Unit P25', 'PG Unit P50', \
     'PG Unit P75', 'PG Unit P90', 'PG Unit N']]
@@ -24,9 +24,9 @@ df['Quarter'] = df['Quarter'].str[:4] + 'Q' + df['Quarter'].str[4:5]
 available_units = df['unit_name'].unique()
 quarters = df['Quarter'].unique()
 quarters = sorted(quarters)
- 
+
 micu = df[df['unit_name'] == 'MICU 12120']
- 
+
 app.layout = html.Div([
         html.Div([
         html.Label('Clinical Units'),
@@ -51,14 +51,14 @@ app.layout = html.Div([
                 )),
         ])
 ])
- 
- 
+
+
 @app.callback(
     Output('container', 'children'), 
     [Input('button', 'n_clicks')], 
     [State('units', 'value')])
 def display_graphs(n_clicks, value):
- 
+
     graphs = []
     for i in value:
         filtered_df = df[df.unit_name == i]
@@ -71,7 +71,6 @@ def display_graphs(n_clicks, value):
                 'data': [(go.Scatter(x=tmp_df['Quarter'], y=tmp_df['Unit'].round(2),
                                hovertemplate= 'Unit Score: %{y}', name= i,
                                showlegend= False,
-                               yaxis_range=(min_y *.75, max_y),
                                line=dict(width=2.5, color='rgb(0,0,0)'))),
                       go.Scatter(
                                 x=tmp_df['Quarter'], y=tmp_df['PG_Unit_P10'].round(2),
@@ -79,7 +78,6 @@ def display_graphs(n_clicks, value):
                                 showlegend= False,
                                 name='PG 10th Pctl',
                                 fill='tozeroy',
-                                yaxis_range=(min_y *.75, max_y),
                                 line=dict(width=0.5, color='rgb(151, 204, 255)')
                    ),
                       go.Scatter(
@@ -88,7 +86,6 @@ def display_graphs(n_clicks, value):
                                 showlegend= False,
                                 name='PG 25th Pctl',
                                 fill='tonexty',
-                                yaxis_range=(min_y *.75, max_y),
                                 line=dict(width=0.5, color='rgb(153, 255, 153)')
                     ),
                       go.Scatter(
@@ -97,7 +94,6 @@ def display_graphs(n_clicks, value):
                                 showlegend= False,
                                 name='PG 50th Pctl',
                                 fill='tonexty',
-                                yaxis_range=(min_y *.75, max_y),
                                 line=dict(width=0.5, color='rgb(255, 255, 102)')
                     ),
                        go.Scatter(
@@ -106,7 +102,6 @@ def display_graphs(n_clicks, value):
                                 showlegend= False,
                                 name='PG 75th Pctl',
                                 fill='tonexty',
-                                yaxis_range=(min_y *.75, max_y),
                                 line=dict(width=0.5, color='rgb(255, 204, 153)')
                     ),
                        go.Scatter(
@@ -115,7 +110,6 @@ def display_graphs(n_clicks, value):
                                 showlegend= False,
                                 name='PG 90th Pctl',
                                 fill='tonexty',
-                                yaxis_range=(min_y *.75, max_y),
                                 line=dict(width=0.5, color='rgb(255, 102, 102)')
                     )
                 ],
@@ -125,10 +119,9 @@ def display_graphs(n_clicks, value):
                      'yaxis': {'range': [min_y, max_y]}
                 },
         },
-           style={'height': '20vh', 'width': '60%'}))
+           style={'height': '30vh', 'width': '90%'}))
     return html.Div(graphs)
- 
+
 if __name__ == '__main__':
     app.run_server(debug=True)
- 
- 
+
