@@ -12,6 +12,9 @@ app = dash.Dash(__name__, external_stylesheets=external_stylesheets)
 
 #app = dash.Dash()
 
+# Alternate Path
+#df = pd.read_excel(r'C:\Test_Data\NDNQI_raw.xlsx')
+
 df = pd.read_excel(r'C:\Users\ejmooney\Desktop\testData\NDNQI_raw.xlsx')
 df = df[['Unit - Clinical ID', 'Unit - Clinical DESC', 'Clinical Unit Type DESC', 'Measure Long Desc', \
     'Quarter', 'Unit', 'PGUnit Mean', 'PG Unit SD', 'PG Unit P10', 'PG Unit P25', 'PG Unit P50', \
