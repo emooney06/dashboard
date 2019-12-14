@@ -122,7 +122,7 @@ def display_graphs(n_clicks, value):
                      'yaxis': {'range': [min_y, max_y]}
                 },
         },
-           style={'height': '45vh', 'width': '90%'}))
+           style={'height': '50vh', 'width': '90%'}))
     return html.Div(graphs)
 
 if __name__ == '__main__':
