@@ -1,5 +1,1 @@
-plotly
-html
-dash
-pandas
-numpy
+
