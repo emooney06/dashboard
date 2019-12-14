@@ -13,9 +13,9 @@ app = dash.Dash(__name__, external_stylesheets=external_stylesheets)
 #app = dash.Dash()
 
 # Alternate Path
-#df = pd.read_excel(r'C:\Test_Data\NDNQI_raw.xlsx')
+df = pd.read_excel(r'C:\Test_Data\NDNQI_raw.xlsx')
 
-df = pd.read_excel(r'C:\Users\ejmooney\Desktop\testData\NDNQI_raw.xlsx')
+#df = pd.read_excel(r'C:\Users\ejmooney\Desktop\testData\NDNQI_raw.xlsx')
 df = df[['Unit - Clinical ID', 'Unit - Clinical DESC', 'Clinical Unit Type DESC', 'Measure Long Desc', \
     'Quarter', 'Unit', 'PGUnit Mean', 'PG Unit SD', 'PG Unit P10', 'PG Unit P25', 'PG Unit P50', \
     'PG Unit P75', 'PG Unit P90', 'PG Unit N']]
@@ -122,7 +122,7 @@ def display_graphs(n_clicks, value):
                      'yaxis': {'range': [min_y, max_y]}
                 },
         },
-           style={'height': '30vh', 'width': '90%'}))
+           style={'height': '45vh', 'width': '90%'}))
     return html.Div(graphs)
 
 if __name__ == '__main__':
