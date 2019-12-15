@@ -1,1 +1,1 @@
-web: gunicorn multi_graphv3:app
+web: gunicorn run:app

@@ -8,7 +8,9 @@ import pandas as pd
 import numpy as np
 
 external_stylesheets = ['https://codepen.io/chriddyp/pen/bWLwgP.css']
-app = dash.Dash(__name__, external_stylesheets=external_stylesheets)
+#app = dash.Dash(__name__, external_stylesheets=external_stylesheets)
+
+app = Flask(__name__)
 
 #app = dash.Dash()
 
@@ -126,5 +128,5 @@ def display_graphs(n_clicks, value):
     return html.Div(graphs)
 
 if __name__ == '__main__':
-    app.run_server(debug=True)
-
+    #app.run_server(debug=True)
+    app.run()
