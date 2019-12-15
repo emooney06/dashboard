@@ -6,11 +6,12 @@ import dash_html_components as html
 import dash_core_components as dcc
 import pandas as pd
 import numpy as np
+import flask
 
 external_stylesheets = ['https://codepen.io/chriddyp/pen/bWLwgP.css']
-#app = dash.Dash(__name__, external_stylesheets=external_stylesheets)
+app = dash.Dash(__name__, external_stylesheets=external_stylesheets)
 
-app = Flask(__name__)
+#app = Flask(__name__)
 
 #app = dash.Dash()
 
