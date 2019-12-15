@@ -1,1 +1,1 @@
-web: gunicorn multi_graphv3:wsgi
+web: gunicorn multi_graphv3:app
